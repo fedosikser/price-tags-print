@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Подготовка PDF-ценников 10 × 15 см к печати на листах A4">
+  <meta name="theme-color" content="#20201f">
+  <title>Ценники на A4</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2320201f'/%3E%3Cpath d='M8 7h16v18H8z' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M11 12h10M11 16h10M11 20h6' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <section class="panel main-panel">
+      <p class="eyebrow">Подготовка к печати</p>
+      <h1>Ценники<br>на листах A4</h1>
+      <p class="intro">Перетащите отдельные одностраничные PDF-ценники. Программа сохранит векторное качество, расставит по два ценника на лист и добавит светлую рамку для резки.</p>
+
+      <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Добавить PDF-файлы">
+        <div>
+          <strong>Перетащите PDF сюда</strong>
+          <span>Один вертикальный ценник — один PDF-файл</span><br>
+          <button class="button secondary" id="choose-files" type="button">Выбрать файлы</button>
+        </div>
+      </div>
+      <input type="file" id="picker" accept="application/pdf,.pdf" multiple hidden>
+
+      <div class="file-header">
+        <h2>Порядок ценников</h2>
+        <button type="button" id="clear">Очистить</button>
+      </div>
+      <div class="files" id="files" aria-live="polite"></div>
+    </section>
+
+    <aside class="panel side-panel">
+      <h2>Готовый файл</h2>
+      <div class="stat"><span>Ценников</span><strong id="count">0</strong></div>
+      <div class="stat"><span>Листов A4</span><strong id="sheets">0</strong></div>
+      <div class="sheet-preview" aria-hidden="true"><div class="tag-mini"></div><div class="tag-mini"></div></div>
+
+      <div class="settings">
+        <label>
+          <span class="label-row"><span>Размер ценника</span><strong id="scale-value">106%</strong></span>
+          <input type="range" id="scale" min="100" max="110" value="106" step="1">
+        </label>
+        <label>
+          <span>Рамка для резки</span>
+          <select id="frame">
+            <option value="0.82">Очень светлая</option>
+            <option value="0.72" selected>Светлая</option>
+            <option value="0.58">Контрастная</option>
+          </select>
+        </label>
+      </div>
+
+      <button class="button primary" type="button" id="generate" disabled>Скачать PDF для печати</button>
+      <p class="status" id="status">Добавьте PDF-файлы.</p>
+      <p class="privacy"><span aria-hidden="true">●</span> Файлы обрабатываются только в вашем браузере и никуда не отправляются.</p>
+    </aside>
+  </main>
+
+  <script src="vendor/pdf-lib.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
